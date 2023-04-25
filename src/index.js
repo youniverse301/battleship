@@ -15,6 +15,7 @@ function Ship() {
         sunk: false
     };
     let submarine = {
+        name: "submarine",
         length: 3,
         hits: 0,
         sunk: false
@@ -26,7 +27,7 @@ function Ship() {
     };
 
     function hit(ship) {
-        if (ship.hits === ship.length) {
+        if (ship.sunk === true) {
         } else {
             ship.hits++;
         }
@@ -50,13 +51,13 @@ function Ship() {
 function Gameboard() {
     let grid = [];
     let game = Ship();
+    let hit = game.hit
+    let sunk = game.isSunk
     let carrier = game.ships[0];
     let battleship = game.ships[1];
     let destroyer = game.ships[2];
     let submarine = game.ships[3];
     let patrolBoat = game.ships[4];
-    console.log(grid);
-
 
     for (let i = 0; i < 10; i++) {
         let row = [];
@@ -66,35 +67,64 @@ function Gameboard() {
         }
 
         grid.push(row);
-    }   
+    }
 
-    grid[0][0] = 1
-    console.log(grid);
-    console.log(game.ships)
+    function checkOccupied(x,y,ship) {
+        if (ship) {
+        for (let i = 0; i < ship.length; i++) { 
+           if (grid[y][x + i] === 0) {
+                return false
+           } else {
+            return true
+           }
+        }
+        } else {
+            if (grid[y][x] === 0) {
+                return false
+            } else {
+                return true
+            }
+        }
+    }
 
     function placeShip(x,y,ship) {
         this.x = x;
         this.y = y;
-        this.ship = ship
-        x = x-1
-        console.log(x)
-        console.log(y)
-        console.log(ship.length)
-        if (ship.length + x <= 10) {
-        for (let i = 0; i < ship.length; i++) { 
-            grid[y][x + i] = "o"
-        }
+        this.ship = ship;
+        x = x-1;
+        occupied = checkOccupied(x,y,ship);
+
+        if (ship.length + x <= 10 && occupied === false) {
+            for (let i = 0; i < ship.length; i++) { 
+                grid[y][x + i] = { value: "o", ship: ship }
+            }
         } else {
-            console.log('too big')
+            throw new Error('too big or occupied');
         }
         console.log(grid);
-    
-    
-    
     }
-    new placeShip(1,4,carrier)
+    new placeShip(1,4,submarine)
+    new placeShip(3,5,destroyer)
 
-
+    function recieveAttack(x,y) {
+        this.x = x;
+        this.y = y;
+        x = x-1;
+        occupied = checkOccupied(x,y);
+        if (occupied === true) {
+            if (grid[y][x].value === "x") {
+                    throw new Error("you have already fired here")
+                } else {
+                    grid[y][x].value = "x";
+                    hit(grid[y][x].ship);
+                    sunk(grid[y][x].ship)
+                    console.log(grid[y][x].ship);
+                }
+        }   else {
+                grid[y][x] = { value: "x" };
+            }
+    }
+    new recieveAttack(1,4)
 }
 
 
