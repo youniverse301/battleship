@@ -135,7 +135,6 @@ function Gameboard() {
                 console.log("Miss at " + (++x) + "," + (++y));
                 return false
             }
-        checkGameOver(ships);
     }
     //new recieveAttack(1,4) // recieveAttack examp
 
@@ -171,31 +170,33 @@ function Player() {
     let test8 = player2Gameboard.placeShip(8, 4, player2Gameboard.submarine);
     let tes9 = player1Gameboard.placeShip(7, 8, player1Gameboard.patrolBoat);
     let test10 = player2Gameboard.placeShip(2, 7, player2Gameboard.patrolBoat);
-    let fire1 = player2Gameboard.recieveAttack(8, 4);
-    let fire2 = player1Gameboard.recieveAttack(1, 1);
-    let fire3 = player1Gameboard.recieveAttack(1, 2);
+    //let fire1 = player2Gameboard.recieveAttack(8, 4);
+    //let fire2 = player1Gameboard.recieveAttack(1, 1);
+    //let fire3 = player1Gameboard.recieveAttack(1, 2);
 
 
   
-    function compAttack(player1Gameboard) {
+    function compAttack() {
       let x = Math.floor(Math.random() * 10) + 1;
       let y = Math.floor(Math.random() * 10) + 1;
-  
-      while (
-        player1Gameboard &&
-        Array.isArray(player1Gameboard[y]) &&
-        player1Gameboard[y][x] !== 0
-      ) {
-        y = Math.floor(Math.random() * 10) + 1;
+      x = x - 1;
+      y = y - 1;
+      if (player1Gameboard.grid[y][x].value === "x") {
+        return compAttack();
+      } if (player1Gameboard.grid[y][x].value === "x" && player1Gameboard.grid[y][x].ship !== undefined) {
+        return compAttack();
+      }
+      else {
+        return [x = (++x), y = (++y)];
       }
 
-      return [x, y];
     }
   
 
     return {
         player1Gameboard: player1Gameboard,
         player2Gameboard: player2Gameboard,
+        compAttack
     };
 }
 
