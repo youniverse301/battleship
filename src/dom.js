@@ -3,15 +3,21 @@ import { Player } from "./index";
 let gameBoard1 = document.getElementById('board1');
 let gameBoard2 = document.getElementById('board2');
 const player = Player();
+function checkOver() {
+    if (player.player1Gameboard.checkGameOver === true || player.player2Gameboard.checkGameOver === true) {
+        console.log("Game Over")
+        return true 
+    } else {
+        return false
+    }
+}
 
 function compAtk() {
   let compCoords = player.compAttack();
   let atk = player.player1Gameboard.recieveAttack(compCoords[0], compCoords[1]);
 
   if (atk === true) {
-    setTimeout(() => {
-      compAtk();
-    }, 1000);
+    setTimeout(() => { compAtk();}, 1000);
   } else {
     setTimeout(() => {
       createTable(player1Grid, gameBoard1);
@@ -66,6 +72,7 @@ let comprecieveAttack = player.player2Gameboard.recieveAttack;
 
 function clickAttack() {
   gameBoard2.addEventListener('click', function (event) {
+    checkOver();
     const cell = event.target;
     let x = cell.dataset.x;
     let y = cell.dataset.y;
@@ -73,7 +80,6 @@ function clickAttack() {
     y = (++y);
     let atk = comprecieveAttack(x, y);
     if (atk === true) {
-      console.log("ship");
       createTable(player2Grid, gameBoard2);
     } else {
       compAtk();

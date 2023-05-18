@@ -32,6 +32,16 @@ body {
     cursor: pointer;
 }
 
+#board2 > .hit:hover {
+    background-color: red;
+    cursor: default;
+}
+
+#board2 > .shiphit:hover {
+    background-color: green;
+    cursor: default;
+}
+
 #board2 > .ship {
     background-color: #2289DA;
 }
