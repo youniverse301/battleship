@@ -33,12 +33,12 @@ body {
 }
 
 #board2 > .hit:hover {
-    background-color: red;
+    background-color: green;
     cursor: default;
 }
 
 #board2 > .shiphit:hover {
-    background-color: green;
+    background-color: red;
     cursor: default;
 }
 
@@ -51,9 +51,75 @@ body {
 }
 
 .hit {
-    background-color: red;
+    background-color: green;
 }
 
 .shiphit {
-    background-color: green;
+    background-color: red;
+}
+
+#welcomeContainer {
+    position: absolute;
+    top: 0;
+    left: 50;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#welcomeBackground {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    align-items: center;
+    background-color: white;
+    height: 540px;
+    width: 350px;
+    gap: 30px;
+}
+
+#shipbox {
+    display: flex;
+    gap: 5px;
+}
+
+#title {
+    font-weight: bold;
+    font-size: 1.7rem;
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding-top: 30px;
+}
+
+#shipbox {
+    font-size: 1.4rem;
+    height: fit-content;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#subtitle, #shipname {
+    margin: 0;
+}
+
+#rotateBtn {
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
+    font-size: 1.2rem;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#gridContainer {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: black;
+    height: 280px;
+    width: 280px;
 }

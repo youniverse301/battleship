@@ -91,6 +91,65 @@ function clickAttack() {
   });
 }
 
+const ships = [
+    player.player1Gameboard.carrier,
+    player.player1Gameboard.battleship,
+    player.player1Gameboard.destroyer,
+    player.player1Gameboard.submarine,
+    player.player1Gameboard.patrolBoat
+  ];
+  var currentIndex = 0;
+  const gridContainer = document.getElementById('gridContainer');
+  const shipname = document.getElementById('shipname');
+  const welcomeContainer = document.getElementById('welcomeContainer');
+  shipname.innerText = "Carrier";
+
+  
+  function player1Place() {
+    gridContainer.addEventListener('click', function (event) {
+      const cell = event.target;
+      let x = cell.dataset.x;
+      let y = cell.dataset.y;
+      x = (++x);
+      y = (++y);
+      var currentShip = ships[currentIndex];
+      var placementError = player.player1Gameboard.placeShip(x, y, currentShip, "horizontal");
+      if (!placementError) {
+        currentIndex++
+
+        createTable(player1Grid, gameBoard1);
+        if (currentIndex === 5) {
+            welcomeContainer.remove();
+        }
+        var currentShipText = ships[currentIndex].type;
+        shipname.innerText = currentShipText;
+      }
+    });
+  }
+  
+  player1Place();
+  
+  
+  
+  
+  
+  
+  
+
+for (let i = 0; i < 10; i++) {
+    for (let j = 0; j < 10; j++) {
+      const cell = document.createElement('div');
+      cell.classList.add('cell');
+      cell.dataset.x = j;
+      cell.dataset.y = i;
+      let x = j;
+      let y = i;
+      gridContainer.appendChild(cell);
+    }
+}
+
+
+
 createTable(player1Grid, gameBoard1);
 createTable(player2Grid, gameBoard2);
 clickAttack();

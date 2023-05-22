@@ -106,7 +106,7 @@ function Gameboard() {
         this.x = x;
         this.y = y;
         this.ship = ship;
-        occupied = checkOccupied(x, y, ship);
+        occupied = checkOccupied(x, y);
         x = x - 1;
         y = y - 1;
       
@@ -119,6 +119,7 @@ function Gameboard() {
             throw new Error('Ship is too big or the position is occupied.');
           }
         } else if (orientation === 'vertical') {
+            console.log(occupied)
           if (ship.length + y <= 10 && occupied === false) {
             for (let i = 0; i < ship.length; i++) {
               if (grid[y + i][x] !== 0) {
@@ -189,20 +190,14 @@ function Gameboard() {
 function Player() {
     const player1Gameboard = Gameboard();
     const player2Gameboard = Gameboard();
-    let test = player1Gameboard.placeShip(1, 4, player1Gameboard.carrier, "horizontal");
-    //let test2 = player2Gameboard.placeShip(5, 3, player2Gameboard.carrier, "vertical");
-    let test3 = player1Gameboard.placeShip(2, 7, player1Gameboard.battleship, "horizontal");
-    //let test4 = player2Gameboard.placeShip(6, 9, player2Gameboard.battleship, "horizontal");
-    let tes5 = player1Gameboard.placeShip(3, 6, player1Gameboard.destroyer, "horizontal");
-    //let test6 = player2Gameboard.placeShip(2, 4, player2Gameboard.destroyer, "horizontal");
-    let tes7 = player1Gameboard.placeShip(6, 10, player1Gameboard.submarine, "horizontal");
-    //let test8 = player2Gameboard.placeShip(8, 4, player2Gameboard.submarine, "horizontal");
-    let tes9 = player1Gameboard.placeShip(7, 8, player1Gameboard.patrolBoat, "horizontal");
-    //let test10 = player2Gameboard.placeShip(2, 7, player2Gameboard.patrolBoat, "horizontal");
+    //let test = player1Gameboard.placeShip(1, 4, player1Gameboard.carrier, "horizontal");
+    //let test3 = player1Gameboard.placeShip(2, 7, player1Gameboard.battleship, "horizontal");
+    //let tes5 = player1Gameboard.placeShip(3, 6, player1Gameboard.destroyer, "horizontal");
+    //let tes7 = player1Gameboard.placeShip(6, 10, player1Gameboard.submarine, "horizontal");
+    //let tes9 = player1Gameboard.placeShip(7, 8, player1Gameboard.patrolBoat, "horizontal");
 
     function compShipRandom(ship) {
         let orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
-        console.log(orientation)
         let unoccupied = 0
         if (orientation === 'vertical') {
             let x = Math.floor(Math.random() * 10) + 1;
@@ -263,7 +258,6 @@ function Player() {
       else {
         return [x = (++x), y = (++y)];
       }
-
     }
   
 
