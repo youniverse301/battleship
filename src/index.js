@@ -164,6 +164,7 @@ function Gameboard() {
     //new recieveAttack(1,4) // recieveAttack examp
 
     function checkGameOver(ships) {
+        console.log('a')
         if (carrier.sunk === true && battleship.sunk === true && 
             destroyer.sunk === true && submarine.sunk === true &&
             patrolBoat.sunk === true) {
@@ -190,11 +191,6 @@ function Gameboard() {
 function Player() {
     const player1Gameboard = Gameboard();
     const player2Gameboard = Gameboard();
-    //let test = player1Gameboard.placeShip(1, 4, player1Gameboard.carrier, "horizontal");
-    //let test3 = player1Gameboard.placeShip(2, 7, player1Gameboard.battleship, "horizontal");
-    //let tes5 = player1Gameboard.placeShip(3, 6, player1Gameboard.destroyer, "horizontal");
-    //let tes7 = player1Gameboard.placeShip(6, 10, player1Gameboard.submarine, "horizontal");
-    //let tes9 = player1Gameboard.placeShip(7, 8, player1Gameboard.patrolBoat, "horizontal");
 
     function compShipRandom(ship) {
         let orientation = Math.random() < 0.5 ? 'horizontal' : 'vertical';
