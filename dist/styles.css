@@ -1,5 +1,6 @@
 body {
     background-color: grey;
+    margin: 0;
 }
   
 #gameboardWrapper {
@@ -178,4 +179,22 @@ body {
     border: none;
     border-radius: 7px;
     padding: 10px;
+}
+
+@font-face {
+    font-family: 'itc';
+    src: url(./fonts/itc-machine-std/MachineStd.otf);
+}
+
+#header {
+    display: flex;
+    justify-content: center;
+}
+
+#headerTitle {
+    padding: 35px;
+    margin: 0;
+    font-family: "itc", Arial, Helvetica, sans-serif;
+    font-size: 5rem;
+    letter-spacing: 2px;
 }
