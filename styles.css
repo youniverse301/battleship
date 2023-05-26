@@ -103,6 +103,10 @@ body {
     margin: 0;
 }
 
+#shipname {
+    text-decoration: underline;
+}
+
 #rotateBtn {
     background-color: black;
     color: white;
@@ -122,4 +126,56 @@ body {
     background-color: black;
     height: 280px;
     width: 280px;
+}
+
+
+
+.cell.hovered {
+    background-color: #002C66;
+    cursor: pointer;
+  }
+  
+
+#rotateBtn {
+    cursor: pointer;
+}
+
+#gameOverContainer {
+    position: absolute;
+    top: 0;
+    left: 50;
+    width: 40%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#gameOver {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    height: 220px;
+    width: 600px;
+    align-self: center;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#winText {
+    margin: 0;
+    padding-top: 35px;
+    font-size: 2.5rem;
+    font-family: Arial, Helvetica, sans-serif;
+
+}
+
+#playagainBtn {
+    margin-bottom: 35px;
+    font-size: 1.3rem;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 7px;
+    padding: 10px;
 }
