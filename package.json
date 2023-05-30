@@ -2,7 +2,7 @@
   "name": "battleship",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dom.js",
   "scripts": {
     "test": "jest",
     "build": "webpack"
